@@ -13,12 +13,12 @@ public class PageRefactory {
 
 
 
-    public class Factory {
+
         static WebDriver driver;
 
         public static WebDriver initiateDriver(String browserName, boolean maximize) {
 
-//            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
 
 
             if (browserName.equalsIgnoreCase("chrome")) {
@@ -39,4 +39,4 @@ public class PageRefactory {
             return driver;
         }
     }
-}
+
