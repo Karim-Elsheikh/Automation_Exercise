@@ -1,4 +1,4 @@
-name: E2E Tests
+name: Registration_E2E_Test
 
 on:
 
@@ -14,7 +14,7 @@ on:
 
 jobs:
 
-  E2E_Test:
+  Registration_E2E_Test:
 
     runs-on: windows-latest
 
@@ -65,3 +65,4 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
 
           reporter: java-junit
+
