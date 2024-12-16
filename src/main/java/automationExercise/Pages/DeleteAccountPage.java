@@ -10,9 +10,10 @@ import utilities.JsonFileManager;
 public class DeleteAccountPage {
     private WebDriver driver;
     private JsonFileManager testData;
-    private By loggedInAsUsername = By.cssSelector("a>b");
+
     private By getAccountDeleteed = By.xpath("//b[text()='Account Deleted!']");
 private By deleteAccountButton = By.cssSelector("a[href='/delete_account']") ;
+    private By loggedInAsUsername = By.cssSelector("a>b");
     public DeleteAccountPage(WebDriver driver) {
         this.driver = driver;
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/TestData.json");
@@ -36,8 +37,5 @@ private By deleteAccountButton = By.cssSelector("a[href='/delete_account']") ;
         System.out.println("User name is displayed: "+driver.findElement(loggedInAsUsername).getText().contains(testData.getTestData("username")));
         return this;
     }
-    /*Assert.assertTrue(driver.findElement(loggedInAsUsername).getText().contains(testData.getTestData("username")), "userNameNotFound!");
-        System.out.println("User name is displayed: "+driver.findElement(loggedInAsUsername).getText().contains(testData.getTestData("username")));
-        return this;
-}*/
+
 }

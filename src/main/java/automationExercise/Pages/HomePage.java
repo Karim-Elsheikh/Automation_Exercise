@@ -11,7 +11,7 @@ public class HomePage {
 
     private WebDriver driver;
     private String url = "https://automationexercise.com/ ";
-    private By deleteAccountButton = By.cssSelector("a[href='/delete_account']");
+
 
     private By getAccountDeleteed = By.xpath("//b[text()='Account Deleted!']");
 
