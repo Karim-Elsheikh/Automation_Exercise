@@ -1,0 +1,24 @@
+{
+         "username": "karim",
+         "mail": "karimalli@yahooo.com",
+  "AccountInformation":
+  {
+     "UserGender": "Male",
+     "Password": "12345",
+     "Day": "1",
+     "Month": "May",
+     "Year": "1999",
+     "FirstName": "Karim",
+     "Newsletter": "true",
+     "SpecialOffer": "false",
+     "LastName": "Elsheikh",
+     "Company": "Gizasystems",
+     "Address1": "Smouha",
+     "Address2": "Alexandria",
+     "Country": "Canada",
+     "State": "229",
+     "City": "Alexandria",
+     "ZipCode": "123123",
+     "MobileNumber": "01210509802"
+  }
+}
