@@ -2,7 +2,6 @@ package automationExercise.tests;
 
 import automationExercise.Pages.*;
 import org.testng.annotations.BeforeSuite;
-import utilities.ExcelFileManager;
 import utilities.JsonFileManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -11,24 +10,24 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utilities.PageRefactory;
 import utilities.PropertiesReader;
 
 
-public class AutomationTCs {
+public class Automation {
 
     WebDriver driver;
 
     AccountSuccessMessagePage successMessage;
-    private utilities.PageRefactory.Factory PageRefactory;
     private JsonFileManager testData;
-    private ExcelFileManager exceltestData;
+
 
     @BeforeMethod
     public void setup() {
 
         driver = PageRefactory.initiateDriver(System.getProperty("browserName"), true);
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/TestData.json");
-        exceltestData = new ExcelFileManager("D:\\Selenium projects\\Automation_Exercise\\src\\test\\resources\\TestDataExcelFiles");
+
 
 
     }
@@ -45,7 +44,7 @@ public class AutomationTCs {
     @Test
     @Description("Sign up successfully and delete the account")
     @Severity(SeverityLevel.CRITICAL)
-    public void Test() {
+    public void Test1() {
         new HomePage(driver)
                  .getUrl()
                  .clickOnsignupOrLoginButton();
@@ -69,7 +68,7 @@ public class AutomationTCs {
 
 
     @BeforeSuite
-    public void properties() {
+    public void Properties() {
         PropertiesReader.loadProperties();
     }
 
