@@ -18,7 +18,7 @@ public class Automation {
 
     WebDriver driver;
 
-    AccountSuccessMessagePage successMessage;
+
     private JsonFileManager testData;
 
 
@@ -27,7 +27,6 @@ public class Automation {
 
         driver = PageRefactory.initiateDriver(System.getProperty("browserName"), true);
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/TestData.json");
-
 
 
     }
@@ -40,30 +39,26 @@ public class Automation {
     }
 
 
-
     @Test
     @Description("Sign up successfully and delete the account")
     @Severity(SeverityLevel.CRITICAL)
     public void Test1() {
         new HomePage(driver)
-                 .getUrl()
-                 .clickOnsignupOrLoginButton();
+                .getUrl()
+                .clickOnsignupOrLoginButton();
         new SignupAndLoginPage(driver)
-                 .fillAccountInformation(testData.getTestData("username"), testData.getTestData("mail"));
+                .fillAccountInformation(testData.getTestData("username"), testData.getTestData("mail"));
         new SignupFormPage(driver)
-                .chooseGenderOption()
                 .SelectDateOfBirth(testData.getTestData("AccountInformation.Day"), testData.getTestData("AccountInformation.Month"), testData.getTestData("AccountInformation.Year"))
-                .fillAddressInformation(testData.getTestData("AccountInformation.Password"), testData.getTestData("AccountInformation.FirstName"), testData.getTestData("AccountInformation.LastName"), testData.getTestData("AccountInformation.Company"), testData.getTestData("AccountInformation.Address1"), testData.getTestData("AccountInformation.Address2"), testData.getTestData("AccountInformation.Country"), testData.getTestData("AccountInformation.State"), testData.getTestData("AccountInformation.City"), testData.getTestData("AccountInformation.ZipCode"), testData.getTestData("AccountInformation.MobileNumber"))
-                .selectSignUpAndOffersCheckboxes()
-                .clickOnCreateAccountButton();
+                .fillAddressInformation(testData.getTestData("AccountInformation.Password"), testData.getTestData("AccountInformation.FirstName"), testData.getTestData("AccountInformation.LastName"), testData.getTestData("AccountInformation.Company"), testData.getTestData("AccountInformation.Address1"), testData.getTestData("AccountInformation.Address2"), testData.getTestData("AccountInformation.Country"), testData.getTestData("AccountInformation.State"), testData.getTestData("AccountInformation.City"), testData.getTestData("AccountInformation.ZipCode"), testData.getTestData("AccountInformation.MobileNumber"));
         new AccountSuccessMessagePage(driver)
-                      .assertAccountCreatedMessageIsDisplayed()
-                      .clickContinueButton();
+                .assertAccountCreatedMessageIsDisplayed()
+                .clickContinueButton();
+        new MainMenuPage(driver)
+                .assertOnLoggedInAsUserName()
+                .deleteAccount();
         new DeleteAccountPage(driver)
-                 .assertOnLoggedInAsUserName()
-                 .clickOnDeleteAccountButton()
-                 .assertAccountDeletedMessageIsDisplayed();
-
+                .assertAccountDeletedMessageIsDisplayed();
     }
 
 
