@@ -1,4 +1,4 @@
-name: Registration_E2E_Test
+name: Run Automation Tests
 
 on:
   workflow_dispatch:
@@ -7,55 +7,63 @@ on:
         description: 'Path to Tests to be Executed'
         default: ''
       headless:
-        description: 'Headless Mode (true/false)'
-        required: true
+        description: 'Run tests in headless mode'
         default: 'false'
 
 jobs:
-  Registration_E2E_Test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        include:
-          - os: ubuntu-latest
-            browser: chrome
-          - os: windows-latest
-            browser: edge
-
-    permissions:
-      checks: write
+  run-tests-ubuntu:
+    if: ${{ github.event.inputs.headless == 'true' }}  # Run on Ubuntu if headless is true
+    runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@v4
+      - name: Setup Java
+        uses: actions/setup-java@v2
         with:
-          distribution: 'zulu'
           java-version: '11'
 
       - name: Setup Maven
-        uses: stCarolas/setup-maven@v5
+        uses: actions/setup-maven@v2
         with:
-          maven-version: 3.9.9
+          maven-version: '3.9.9'
 
-      - name: Set up headless configuration
-        run: echo "HEADLESS=${{ github.event.inputs.headless }}" >> $GITHUB_ENV
+      - name: Run Tests
+        run: mvn clean test -Dheadless=true
 
-      - name: Execute Tests
-        run: |
-          mvn -Dtest="${{ github.event.inputs.testsPath }}" test
-        env:
-          BROWSER: ${{ matrix.browser }}
-          HEADLESS: ${{ env.HEADLESS }}
-
-      - name: Publish Report
-        continue-on-error: true
+      - name: Publish Test Report
         uses: dorny/test-reporter@v1
-        if: success() || failure()
+        if: always()
+        with:
+          name: Tests Report
+          path: 'target/surefire-reports/TEST-*.xml'
+          reporter: java-junit
+
+  run-tests-windows:
+    if: ${{ github.event.inputs.headless == 'false' }}  # Run on Windows if headless is false
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Setup Maven
+        uses: actions/setup-maven@v2
+        with:
+          maven-version: '3.9.9'
+
+      - name: Run Tests
+        run: mvn clean test -Dheadless=false
+
+      - name: Publish Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
         with:
           name: Tests Report
           path: 'target/surefire-reports/TEST-*.xml'
