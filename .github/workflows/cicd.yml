@@ -19,10 +19,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+         distribution: 'zulu' # See 'Supported distributions' for available options
+         java-version: '21'
+
 
       - name: Setup Maven
         uses: stCarolas/setup-maven@v5
@@ -48,9 +50,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '21'
 
       - name: Setup Maven
