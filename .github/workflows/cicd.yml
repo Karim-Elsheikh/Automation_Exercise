@@ -12,7 +12,7 @@ on:
 
 ##every day at 01:00 am----
   schedule:
-    - cron: "0 1 * * *"
+    - cron: "*/15 * * * *"
 
 
   pull_request:
