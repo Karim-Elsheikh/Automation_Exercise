@@ -64,10 +64,11 @@ jobs:
       - name: Run Tests
         run: mvn clean test -Dheadless=false
 
-      - name: Publish Test Report
+      - name: Publish Report
+        continue-on-error: true
         uses: dorny/test-reporter@v1
-        if: always()
+        if: success() || failure()
         with:
-          name: Tests Report
-          path: 'target/surefire-reports/TEST-*.xml'
-          reporter: java-junit
+         name: Tests Report
+         path: 'target/surefire-reports/TEST-*.xml'
+         reporter: java-junit
