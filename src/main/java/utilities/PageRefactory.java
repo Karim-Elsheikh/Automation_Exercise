@@ -4,9 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.time.Duration;
 
 public class PageRefactory {
 
@@ -28,11 +25,14 @@ public class PageRefactory {
             System.out.println("Edge Driver initialized");
             driver = new EdgeDriver();
             System.out.println("Edge Driver Opened");
+
         } else if (browserName.equalsIgnoreCase("chrome") && headless) {
             System.out.println("HeadLess Chrome Driver initialized");
-            ChromeOptions options= new ChromeOptions();
-            options.addArguments("headless");
-            driver = new ChromeDriver(options);
+
+            ChromeOptions headlessOption = new ChromeOptions();
+            headlessOption.addArguments("headless");
+            driver = new ChromeDriver(headlessOption);
+
             System.out.println("Title is: " +driver.getTitle());
             System.out.println("Headless Chrome Driver run started");
         }
