@@ -25,7 +25,7 @@ public class Automation {
     @BeforeMethod
     public void setup() {
 
-        driver = PageRefactory.initiateDriver(System.getProperty("browserName"), true);
+        driver = PageRefactory.initiateDriver(System.getProperty("browserName"), true,true);
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/TestData.json");
 
 
