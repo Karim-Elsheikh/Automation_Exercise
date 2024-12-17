@@ -19,7 +19,7 @@ on:
       - main
 
 jobs:
-  E2E_Test_WindowsTest:
+  E2E_Test_Windows:
     runs-on: windows-latest
     permissions:
       checks: write
