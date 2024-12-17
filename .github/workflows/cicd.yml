@@ -20,7 +20,7 @@ on:
       - main
 
 jobs:
-  Test_Windows_Edge:
+  E2E_Windows_Edge:
     runs-on: windows-latest
     permissions:
       checks: write
