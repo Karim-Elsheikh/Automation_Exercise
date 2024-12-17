@@ -9,7 +9,8 @@ on:
       testsPath_Headless:
         description: 'headless state'
         default: 'true'
-##every day at 01:00 am---
+
+##every day at 01:00 am----
   schedule:
     - cron: "0 1 * * *"
 
