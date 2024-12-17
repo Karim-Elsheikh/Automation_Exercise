@@ -20,7 +20,7 @@ on:
       - main
 
 jobs:
-  E2E_Test_Windows:
+  Test_Windows_Edge:
     runs-on: windows-latest
     permissions:
       checks: write
@@ -48,7 +48,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: Tests Report Windows Chrome
+          name:   Windows Report
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
 
@@ -91,7 +91,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: Tests Report Ubuntu Chrome
+          name:   Ubuntu Report
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
 
