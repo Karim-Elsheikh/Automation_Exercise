@@ -30,7 +30,7 @@ public class HomePage {
 
     }
 
-@Step("Step 2")
+@Step("Step 2: click on Signup button")
     public HomePage clickOnsignupOrLoginButton() {
        // driver.findElement(signupOrLoginButton).click();
 

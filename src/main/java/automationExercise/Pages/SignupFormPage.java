@@ -35,7 +35,7 @@ public class SignupFormPage {
         driver.get(url);
     }
 
-    @Step("Step 6")
+    @Step("Step 6: Fill Address Information")
     public SignupFormPage fillAddressInformation(String password, String firstname, String lastName, String company, String add1
             , String add2, String contry, String Stat, String City, String zip, String fonNumber) {
         ElementActions.click(driver, gender);
@@ -59,7 +59,7 @@ public class SignupFormPage {
 
 
 
-    @Step("Step 5")
+    @Step("Step 5: Select Date Of Birth")
     public SignupFormPage SelectDateOfBirth(String day, String month, String year) {
         new Select(driver.findElement(By.id("days"))).selectByValue(day);
         new Select(driver.findElement(By.id("months"))).selectByVisibleText(month);

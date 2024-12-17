@@ -23,17 +23,15 @@ public class AccountSuccessMessagePage {
     }
 
     ///// Validations \\\\\
-    @Step("Step 9")
+
     public AccountSuccessMessagePage assertAccountCreatedMessageIsDisplayed() {
         Assert.isTrue(driver.findElement(getAccountCreated).isDisplayed(), "ACCOUNT CREATED!not found");
 return this;
 
     }
 
-    /*public AccountSuccessMessagePage getUrl(){
-        driver.get(url);
-        return this ;*/
-@Step("Step 10")
+
+
     public AccountSuccessMessagePage clickContinueButton() {
     ElementActions.click(driver,clickOnCreateButton);
         return this ;

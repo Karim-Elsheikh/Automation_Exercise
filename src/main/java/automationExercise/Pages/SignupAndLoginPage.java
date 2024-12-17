@@ -24,7 +24,7 @@ private WebDriver driver ;
         driver.get(url);
     }
 
-@Step("Step 3")
+@Step("Step 3 : fill in username,mail & click on signup button")
     public void fillAccountInformation(String name, String Mail) {
         driver.findElement(nameField).sendKeys(name);
         driver.findElement(emailField).sendKeys(Mail);

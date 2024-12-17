@@ -18,20 +18,20 @@ private By deleteAccountButton = By.cssSelector("a[href='/delete_account']") ;
         this.driver = driver;
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/TestData.json");
     }
-@Step("Step 12")
+
     public  DeleteAccountPage clickOnDeleteAccountButton() {
     ElementActions.click(driver, deleteAccountButton);
 
         return this ;
     }
 
-@Step("Step 13")
+@Step("Step 9: assert Account Deleted Message IsDisplayed")
     public DeleteAccountPage assertAccountDeletedMessageIsDisplayed() {
         Assert.assertTrue(driver.findElement(getAccountDeleteed).isDisplayed(), "ACCOUNT DELETED! not found");
         System.out.println("Account Deleted message is displayed: " +driver.findElement(getAccountDeleteed).isDisplayed());
         return  this ;
     }
-    @Step("Step11")
+
     public DeleteAccountPage assertOnLoggedInAsUserName() {
         Assert.assertEquals(driver.findElement(loggedInAsUsername).getText(),(testData.getTestData("username")), "userNameNotFound!");
         System.out.println("User name is displayed: "+driver.findElement(loggedInAsUsername).getText().contains(testData.getTestData("username")));

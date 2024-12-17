@@ -23,6 +23,7 @@ public class MainMenuPage {
     }
 
     //Assertions
+    @Step("Step 7 :Assert on Logged In As User Name ")
     public MainMenuPage assertOnLoggedInAsUserName() {
         Assert.assertEquals(driver.findElement(loggedInAsUsername).getText(), (testData.getTestData("username")), "userNameNotFound!");
         System.out.println("User name is displayed: " + driver.findElement(loggedInAsUsername).getText().contains(testData.getTestData("username")));
@@ -35,7 +36,7 @@ public class MainMenuPage {
             return this ;
         }
 
-
+@Step("Step 8 : Click on Delete Account Button")
         public MainMenuPage deleteAccount() {
             ElementActions.click(driver, deleteAccountButton);
             return this ;
