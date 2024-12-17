@@ -5,13 +5,13 @@ on:
     inputs:
       testsPath:
         description: 'Path to Tests to be Executed'
-        default: 'POM_Tests.AutomationExerciseTests'
+        default: 'automationExercise.tests.Automation'
       testsPath_Headless:
         description: 'headless state'
         default: 'true'
-
+#every day at 01:00 am
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "0 1 * * *"
 
 
   pull_request:
