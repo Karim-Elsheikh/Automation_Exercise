@@ -13,8 +13,6 @@ public class PageRefactory {
 
 
 
-
-
     static WebDriver driver;
 
     public static WebDriver initiateDriver(String browserName, boolean maximize,boolean headless) {
