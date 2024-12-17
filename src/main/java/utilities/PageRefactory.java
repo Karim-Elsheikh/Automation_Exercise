@@ -2,6 +2,7 @@ package utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -21,20 +22,29 @@ public class PageRefactory {
 
 
 
-        if (browserName.equalsIgnoreCase("chrome")) {
+        if (browserName.equalsIgnoreCase("chrome") && !headless) {
+            System.out.println("Chrome Driver initialized");
             driver = new ChromeDriver();
-            System.out.println("intializing Chrome Browser on OS : " + System.getProperty("os.name") + "and the version is " + System.getProperty("os.version"));
-        } else if (browserName.equalsIgnoreCase("firefox")) {
-            System.out.println("intializing firefox Browser on OS : " + System.getProperty("os.name") + "and the version is " + System.getProperty("os.version"));
-            driver = new FirefoxDriver();
-        } else if (browserName.equalsIgnoreCase("edge")) {
-            System.out.println("intializing Edge Browser on OS : " + System.getProperty("os.name") + "and the version is " + System.getProperty("os.version"));
+            System.out.println("Chrome Driver Opened");
+        } else if (browserName.equalsIgnoreCase("edge") && !headless) {
+            System.out.println("Edge Driver initialized");
             driver = new EdgeDriver();
+            System.out.println("Edge Driver Opened");
+        } else if (browserName.equalsIgnoreCase("chrome") && headless) {
+            System.out.println("HeadLess Chrome Driver initialized");
+            ChromeOptions options= new ChromeOptions();
+            options.addArguments("headless");
+            driver = new ChromeDriver(options);
+            System.out.println("Title is: " +driver.getTitle());
+            System.out.println("Headless Chrome Driver run started");
         }
-
         if (maximize) {
+            System.out.println("Window maximized");
             driver.manage().window().maximize();
-            System.out.println("window is maximized , and the window size is " + driver.manage().window().getSize());
+            System.out.println(driver.manage().window().getSize());
+        } else {
+            System.out.println("Window isn't maximized");
+            System.out.println(driver.manage().window().getSize());
         }
         return driver;
     }
