@@ -10,9 +10,9 @@ on:
         description: 'headless state'
         default: 'true'
 
-##every 15 min
+##every day at 01:00 am ---
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "0 1 * * *"
 
 
   pull_request:
