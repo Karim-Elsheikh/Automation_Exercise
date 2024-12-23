@@ -8,9 +8,11 @@ import org.testng.annotations.Test;
 import utilities.ElementActions;
 
 public class AccountSuccessMessagePage {
-  private WebDriver driver ;
+    private WebDriver driver;
 
 
+
+///// Locators \\\\\
 
     private By getAccountCreated = By.xpath("//h2[@data-qa='account-created']");
     private String url = "https://automationexercise.com/account_created";
@@ -18,23 +20,24 @@ public class AccountSuccessMessagePage {
 
 
 
-    public AccountSuccessMessagePage(WebDriver driver) {
-        this.driver = driver;
+
+
+    public AccountSuccessMessagePage clickContinueButton() {
+        ElementActions.click(driver, clickOnCreateButton);
+        return this;
     }
+
 
     ///// Validations \\\\\
 
     public AccountSuccessMessagePage assertAccountCreatedMessageIsDisplayed() {
         Assert.isTrue(driver.findElement(getAccountCreated).isDisplayed(), "ACCOUNT CREATED!not found");
-return this;
+        return this;
 
     }
-
-
-//kds
-    public AccountSuccessMessagePage clickContinueButton() {
-    ElementActions.click(driver,clickOnCreateButton);
-        return this ;
+    public AccountSuccessMessagePage(WebDriver driver) {
+        this.driver = driver;
     }
+
 
 }

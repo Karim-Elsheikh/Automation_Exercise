@@ -28,7 +28,7 @@ public class JsonFileManager {
         }
     }
 
-    public String getTestData(String jsonPath) {
+    public String getjsonTestData(String jsonPath) {
         String testData = "";
         try {
             testData = JsonPath.read(jsonReader, jsonPath);
