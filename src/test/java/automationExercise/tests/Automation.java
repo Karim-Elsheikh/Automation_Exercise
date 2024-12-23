@@ -17,40 +17,22 @@ import utilities.PropertiesReader;
 public class Automation {
 
     WebDriver driver;
-
-
     private JsonFileManager testData;
 
-
-    @BeforeMethod
-    public void setup() {
-
-        driver = PageRefactory.initiateDriver(System.getProperty("browserName"),true,Boolean.parseBoolean(System.getProperty("headless")));
-        testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/TestData.json");
-
-
-    }
-
-
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-
-    }
 
 
     @Test
     @Description("Sign up successfully and delete the account")
     @Severity(SeverityLevel.CRITICAL)
-    public void Test1() {
+    public void Signup() {
         new HomePage(driver)
-                .getUrl()
+                .navigate()
                 .clickOnsignupOrLoginButton();
         new SignupAndLoginPage(driver)
-                .fillAccountInformation(testData.getTestData("username"), testData.getTestData("mail"));
+                .fillAccountInformation(testData.getjsonTestData("username"),testData.getjsonTestData("mail"));
         new SignupFormPage(driver)
-                .SelectDateOfBirth(testData.getTestData("AccountInformation.Day"), testData.getTestData("AccountInformation.Month"), testData.getTestData("AccountInformation.Year"))
-                .fillAddressInformation(testData.getTestData("AccountInformation.Password"), testData.getTestData("AccountInformation.FirstName"), testData.getTestData("AccountInformation.LastName"), testData.getTestData("AccountInformation.Company"), testData.getTestData("AccountInformation.Address1"), testData.getTestData("AccountInformation.Address2"), testData.getTestData("AccountInformation.Country"), testData.getTestData("AccountInformation.State"), testData.getTestData("AccountInformation.City"), testData.getTestData("AccountInformation.ZipCode"), testData.getTestData("AccountInformation.MobileNumber"));
+                .SelectDateOfBirth(testData.getjsonTestData("AccountInformation.Day"),testData.getjsonTestData("AccountInformation.Month"),testData.getjsonTestData("AccountInformation.Year"))
+                .fillAddressInformation(testData.getjsonTestData("AccountInformation.Year"), testData.getjsonTestData("AccountInformation.FirstName"), testData.getjsonTestData("AccountInformation.LastName"),testData.getjsonTestData("AccountInformation.Company"), testData.getjsonTestData("AccountInformation.Address1"), testData.getjsonTestData("AccountInformation.Address2"),testData.getjsonTestData("AccountInformation.Country"),testData.getjsonTestData("AccountInformation.State"), testData.getjsonTestData("AccountInformation.City"), testData.getjsonTestData("AccountInformation.ZipCode"), testData.getjsonTestData("AccountInformation.MobileNumber"));
         new AccountSuccessMessagePage(driver)
                 .assertAccountCreatedMessageIsDisplayed()
                 .clickContinueButton();
@@ -59,6 +41,24 @@ public class Automation {
                 .deleteAccount();
         new DeleteAccountPage(driver)
                 .assertAccountDeletedMessageIsDisplayed();
+
+    }
+
+    //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
+
+
+    @BeforeMethod
+    public void setup() {
+
+        driver = PageRefactory.initiateDriver(System.getProperty("browserName"), true, Boolean.parseBoolean(System.getProperty("headless")));
+        testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/TestData.json");
+
+    }
+
+    @AfterMethod
+    public void teardown() {
+        driver.quit();
+
     }
 
 

@@ -9,11 +9,10 @@ import utilities.ElementActions;
 public class SignupFormPage {
     WebDriver driver;
 
-    public SignupFormPage(WebDriver driver) {
-        this.driver = driver;
-    }
 
-    private String url = "https://automationexercise.com/signup ";
+
+    ////   Locators  \\\\
+
     private By gender = By.id("id_gender1");
     private By passDataToPasswordField = By.cssSelector("input.form-control[id=password]");
     private By newsLetterCheckBox = By.id("newsletter");
@@ -30,10 +29,7 @@ public class SignupFormPage {
     private By mobileNummber = By.id("mobile_number");
     private By clickOnCreateAccoiuntButton = By.xpath("//button[@data-qa='create-account']");
 
-
-    public void getUrl() {
-        driver.get(url);
-    }
+    ////   Actions  \\\\
 
     @Step("Step 6: Fill Address Information")
     public SignupFormPage fillAddressInformation(String password, String firstname, String lastName, String company, String add1
@@ -57,8 +53,6 @@ public class SignupFormPage {
         return this;
     }
 
-
-
     @Step("Step 5: Select Date Of Birth")
     public SignupFormPage SelectDateOfBirth(String day, String month, String year) {
         new Select(driver.findElement(By.id("days"))).selectByValue(day);
@@ -69,6 +63,9 @@ public class SignupFormPage {
 
 
 
+    public SignupFormPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
 
 

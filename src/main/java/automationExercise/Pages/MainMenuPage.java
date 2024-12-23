@@ -8,12 +8,33 @@ import utilities.JsonFileManager;
 import utilities.ElementActions;
 
 public class MainMenuPage {
+
+    ////   Locators  \\\\
+
     private WebDriver driver;
     private JsonFileManager testData;
-    //locators
-    private By signupOrLoginButton = By.xpath("//a[@href='/login']");
     private By deleteAccountButton = By.cssSelector("a[href='/delete_account']");
     private By loggedInAsUsername = By.cssSelector("a>b");
+
+
+
+
+    ////   Actions  \\\\
+
+    @Step("Step 8 : Click on Delete Account Button")
+    public MainMenuPage deleteAccount() {
+        ElementActions.click(driver, deleteAccountButton);
+        return this;
+    }
+
+    ////   Validations  \\\\
+
+    @Step("Step 7 :Assert on Logged In As User Name ")
+    public MainMenuPage assertOnLoggedInAsUserName() {
+        Assert.assertEquals(driver.findElement(loggedInAsUsername).getText(),testData.getjsonTestData("username") ,"user name not as expected !");
+        System.out.println("User name is displayed and it is " + driver.findElement(loggedInAsUsername).getText());
+        return this;
+    }
 
 
     public MainMenuPage(WebDriver driver) {
@@ -22,25 +43,4 @@ public class MainMenuPage {
 
     }
 
-    //Assertions
-    @Step("Step 7 :Assert on Logged In As User Name ")
-    public MainMenuPage assertOnLoggedInAsUserName() {
-        Assert.assertEquals(driver.findElement(loggedInAsUsername).getText(), (testData.getTestData("username")), "userNameNotFound!");
-        System.out.println("User name is displayed: " + driver.findElement(loggedInAsUsername).getText().contains(testData.getTestData("username")));
-        return this;
-    }
-        //Actions
-
-        public  MainMenuPage clickOnSignUpSignInLink () {
-            ElementActions.click(driver, signupOrLoginButton);
-            return this ;
-        }
-
-@Step("Step 8 : Click on Delete Account Button")
-        public MainMenuPage deleteAccount() {
-            ElementActions.click(driver, deleteAccountButton);
-            return this ;
-        }
-
-
-    }
+}
