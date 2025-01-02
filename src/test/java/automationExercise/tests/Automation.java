@@ -1,5 +1,6 @@
 package automationExercise.tests;
 
+import Loggin.LogoutPage;
 import automationExercise.Pages.*;
 import org.testng.annotations.BeforeSuite;
 import utilities.JsonFileManager;
@@ -42,6 +43,26 @@ public class Automation {
         new DeleteAccountPage(driver)
                 .assertAccountDeletedMessageIsDisplayed();
 
+    }
+    @Test
+    public void LogginTestCase() {
+
+        new HomePage(driver)
+                .navigate()
+                .clickOnsignupOrLoginButton();
+        new SignupAndLoginPage(driver)
+                .fillAccountInformation(testData.getjsonTestData("username"), testData.getjsonTestData("mail"));
+        new SignupFormPage(driver)
+                .SelectDateOfBirth(testData.getjsonTestData("AccountInformation.Day"), testData.getjsonTestData("AccountInformation.Month"), testData.getjsonTestData("AccountInformation.Year"))
+                .fillAddressInformation(testData.getjsonTestData("AccountInformation.Year"), testData.getjsonTestData("AccountInformation.FirstName"), testData.getjsonTestData("AccountInformation.LastName"), testData.getjsonTestData("AccountInformation.Company"), testData.getjsonTestData("AccountInformation.Address1"), testData.getjsonTestData("AccountInformation.Address2"), testData.getjsonTestData("AccountInformation.Country"), testData.getjsonTestData("AccountInformation.State"), testData.getjsonTestData("AccountInformation.City"), testData.getjsonTestData("AccountInformation.ZipCode"), testData.getjsonTestData("AccountInformation.MobileNumber"));
+        new AccountSuccessMessagePage(driver)
+                .assertAccountCreatedMessageIsDisplayed()
+                .clickContinueButton();
+        new MainMenuPage(driver)
+                .assertOnLoggedInAsUserName();
+        new LogoutPage(driver)
+                .clickOnLoggoutButton()
+                .loginWithEmailAndPassword(testData.getjsonTestData("LoginCredintioals.email"), testData.getjsonTestData("LoginCredintioals.password"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\

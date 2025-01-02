@@ -1,10 +1,10 @@
 {
          "username": "karimAli",
-         "mail": "karimAliMohj@yahooo.com",
+         "mail": "karimElsheikh77@ali.com",
   "AccountInformation":
   {
      "UserGender": "Male",
-     "Password": "12345",
+     "Password": "123456",
      "Day": "1",
      "Month": "May",
      "Year": "1999",
@@ -20,5 +20,10 @@
      "City": "Alexandria",
      "ZipCode": "123123",
      "MobileNumber": "01210509802"
+  },
+  "LoginCredintioals":
+  {
+    "email": "karimmoha@ali.com",
+    "password": "123456"
   }
 }
